@@ -12,10 +12,36 @@
             height: 100%;
             background-color: #000000;
         }
+        .divider {
+            position: absolute;
+            top: 20%;
+            width: 100%;
+            height: 1px;
+            background: white;
+        }
+        .title {
+            position: absolute;
+            top: 10%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-family: Arial, sans-serif;
+            color: black;
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 40px #d8d8d8,
+                0 0 60px #d8d8d8;
+            font-weight: bold;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
-    <!-- Intencionalmente vacío según indicación del usuario -->
+    <div class="title">MX COMMUNITY</div>
+    <div class="divider"></div>
 </body>
 </html>
 
