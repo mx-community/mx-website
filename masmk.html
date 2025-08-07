@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Digital Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --gold: linear-gradient(135deg, #D4AF37 0%, #F9D423 100%);
+            --silver: #C0C0C0;
+            --dark-blue: #0F1C3F;
+            --white-border: rgba(255, 255, 255, 0.3);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .btn-gold {
+            background: var(--gold);
+            color: var(--dark-blue);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 12px 30px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+        }
+        
+        .btn-gold:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-gold:hover:before {
+            left: 100%;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--silver);
+            color: var(--silver);
+            background: transparent;
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(192, 192, 192, 0.1);
+            color: white;
+            border-color: white;
+        }
+        
+        .header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        var(--dark-blue);
+            border-bottom: 1px solid var(--white-border);
+        }
+        
+        .chat-bubble {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border-top-left-radius: 0;
+            padding: 15px;
+            max-width: 70%;
+            position: relative;
+            margin: 20px 0;
+            border: 1px solid var(--white-border);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+            top: 0;
+            left: 0;
+            z-index: -1;
+            animation: pulse 4s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.1; }
+        }
+        
+        .card {
+            background: rgba(15, 28, 63, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px;
+            border: 1px solid var(--white-border);
+            transition: all 0.3s;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #000 100%);
+            width: 80%;
+            max-width: 700px;
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--white-border);
+            position: relative;
+            animation: modalFadeIn 0.5s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--silver);
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: white;
+        }
+        
+        .feature-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .feature-box:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .rotating-text {
+            display: inline-block;
+            animation: rotateText 8s infinite;
+        }
+        
+        @keyframes rotateText {
+            0%, 20% { transform: translateY(0); }
+            25%, 45% { transform: translateY(-1.2em); }
+            50%, 70% { transform: translateY(-2.4em); }
+            75%, 95% { transform: translateY(-3.6em); }
+            100% { transform: translateY(-4.8em); }
+        }
+        
+        .text-gradient {
+            background: var(--gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .modal-content {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header py-6 px-4 md:px-10 lg:px-20 fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl font-bold">
+                <span class="bg-gradient-to-r from-silver to-gold bg-clip-text text-transparent">DIGI</span><span class="text-white">MX COMMUNITY</span>
+            </div>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="https://mx-website.vercel.app/" class="text-silver hover:text-white transition">Inicio</a></li>
+                    <li><a href="bots.html" class="text-silver hover:text-white transition">WhatsApp Bots</a></li>
+                    <li><a href="membresias.html" class="text-silver hover:text-white transition">Membresías</a></li>
+                    <li><a href="comunidad.html" class="text-silver hover:text-white transition">Comunidad</a></li>
+                    <li><a href="https://wa.me/5493873655135" class="text-silver hover:text-white transition">Contacto</a></li>
+                </ul>
+            </nav>
+            <button href="https://wa.me/5493873655135" class="btn-gold md:ml-4">Consulta Gratis</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 md:px-10 lg:px-20 relative overflow-hidden">
+        <div class="glow"></div>
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <div class="chat-bubble max-w-md">
+                    <p class="text-lg">¡No te quedes atras! Entra en la comunidad y te enseñamos a generar ingresos dia a dia con estrategias acertados.</p>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                    Transformate en un nuevo miembro de nuestra comunidad.
+                    <span class="rotating-text block h-12 overflow-hidden">
+                        <span class="block text-gradient"> </span>
+                        <span class="block text-gradient"> </span>
+                        <span class="block text-gradient"> </span>
+                        <span class="block text-gradient"> </span>
+                        <span class="block text-gradient"> </span>
+                    </span>
+                </h1>
+                <p class="text-lg text-silver mb-8 max-w-lg">En esta comunidad trata de enseñarte a como emprender en los negocios digitales, asi como lo leíste.</p>
+                <div class="flex flex-wrap gap-4">
+                    <button href="https://wa.me/5493873655135" class="btn-gold">Comenzar Ahora</button>
+                    <button href="membresias.html" class="btn-outline">Ver membresías</button>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/20027e6a-2938-48df-9687-83a6ad68e523.png" alt="Equipo de marketing digital reunido en una oficina moderna analizando datos en pantallas digitales" class="rounded-lg shadow-2xl border border-white border-opacity-20">
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-r from-silver to-gold rounded-full blur-xl opacity-20 z-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Carousel -->
+    <section class="py-20 px-4 md:px-10 lg:px-20 bg-dark-blue bg-opacity-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nuestros Servicios de <span class="text-gradient">Marketing Digital</span></h2>
+                <p class="text-silver max-w-2xl mx-auto">Te ayudamos a generar ingresos dia a dia con estrategias acertadas, con nuestra comunidad estamos seguros de que podras hacerlo.</p>
+            </div>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel">
+                    <div class="card" style="min-width: 300px;">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3684cb40-38c4-4790-8d13-8e02accadf0a.png" alt="Profesional analizando métricas de redes sociales en un dashboard digital" class="rounded-lg mb-4">
+                        <h3 class="text-xl font-bold mb-3">¿Eres menor de edad? (15/17)</h3>
+                        <p class="text-silver mb-6 flex-grow">No te preocupes, hay clientes que siguen en la uni o en el cole y generan ingresos diarios mientras estudian en su dia.</p>
+                        <button href="https://wa.me/5493873655135" class="btn-gold w-full">Comenzar</button>
+                    </div>
+                    <div class="card" style="min-width: 300px;">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/00d7c63c-e6d7-410b-bdae-b29afc25e899.png" alt="Diseñador web trabajando en una interfaz de usuario moderna para sitio web" class="rounded-lg mb-4">
+                        <h3 class="text-xl font-bold mb-3">¿Eres ama de casa?</h3>
+                        <p class="text-silver mb-6 flex-grow">¡Tranqui, podes comenzar en nuestra comunidad fácil y sencillo, habla con personas en tu misma situación!</p>
+                        <button href="https://wa.me/5493873655135" class="btn-gold w-full">Comenzar</button>
+                    </div>
+                    <div class="card" style="min-width: 300px;">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4e4d5e08-615f-49c5-bcf8-60603cd2607b.png" alt="Equipo de SEO analizando palabras clave en pantallas de computadora" class="rounded-lg mb-4">
+                        <h3 class="text-xl font-bold mb-3">¿Buscas un trabajo?</h3>
+                        <p class="text-silver mb-6 flex-grow">¡Si no te va bien en tu trabajo, podes unirte a nosotros, asi conservas dos cosas, pero cosechas rapido!</p>
+                        <button href="https://wa.me/5493873655135" class="btn-gold w-full">Comenzar</button>
+                    </div>
+                </div>
+                <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4 md:px-10 lg:px-20 bg-black">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">¿Por qué elegir <span class="text-gradient">nuestra comunidad</span>?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-box">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-br from-gold to-gold text-dark-blue rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Resultados Comprobados</h3>
+                    </div>
+                    <p class="text-silver">A lo largo del tiempo, mas de 30.000 mil miembros de la comunidad han mostrado pruebas de su crecimiento económico.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-br from-gold to-gold text-dark-blue rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Aprender con otros</h3>
+                    </div>
+                    <p class="text-silver">Consulta tus dudas o comparte estrategias con los demas, todo lo que se enseña sobre negocios digitales y como emprender.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-br from-gold to-gold text-dark-blue rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-brain text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Estrategias cada semana</h3>
+                    </div>
+                    <p class="text-silver">Cada semana mostramos nuevas estrategias o temas referentes al caso específico.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-br from-gold to-gold text-dark-blue rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-lightbulb text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Experiencia</h3>
+                    </div>
+                    <p class="text-silver">Sube tu experiencia a otro nivel, con las enseñanzas que brinda la comunidad Mohammad y Asociados.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-br from-gold to-gold text-dark-blue rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-headset text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Soporte 24/7</h3>
+                    </div>
+                    <p class="text-silver">Respuestas rápidas y soluciones efectivas cuando más las necesites, sin importar la hora.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-br from-gold to-gold text-dark-blue rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Seguridad</h3>
+                    </div>
+                    <p class="text-silver">Seguridad de datos y detalles sobre los usuarios, quedate tranqui en tu hogar, emprende y aprende.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <button id="openModal" class="btn-gold px-8 py-3 text-lg">Conoce más sobre el enfoque</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-4 md:px-10 lg:px-20 bg-dark-blue bg-opacity-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">¿Tenes mas dudas que <span class="text-gradient">contar</span>?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-black bg-opacity-40 rounded-lg p-8 border border-white border-opacity-20">
+                    <div class="flex items-center mb-6">
+                        <img src="https://tinyurl.com/2yyqo6ev" alt="Foto de Daniel Rojas, CEO de empresa tecnológica" class="rounded-full border-2 border-gold w-16 h-16 mr-4">
+                        <div>
+                            <h4 class="font-bold">mx-community</h4>
+                            <p class="text-silver text-sm">CEO, comunidad mx</p>
+                        </div>
+                    </div>
+                    <p class="text-silver mb-4">"Te invito a que hagas esto, donde podras usar esta oportunidad de oro, adéntrate en los negocios digitales y aprende mas sobre el uso."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-black bg-opacity-40 rounded-lg p-8 border border-white border-opacity-20">
+                    <div class="flex items-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f74d5096-22ed-4ee0-a3b7-053a6a531e23.png" alt="Foto de Alejandra Méndez, Directora de Marketing" class="rounded-full border-2 border-gold w-16 h-16 mr-4">
+                        <div>
+                            <h4 class="font-bold">Alejandra</h4>
+                            <p class="text-silver text-sm">Directora de Marketing</p>
+                        </div>
+                    </div>
+                    <p class="text-silver mb-4">"Su estrategia de redes sociales transformó completamente nuestra presencia en línea. Ahora tenemos una comunidad activa y comprometida con nuestra marca."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 md:px-10 lg:px-20 bg-gradient-to-r from-dark-blue to-black relative overflow-hidden">
+        <div class="glow"></div>
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Estas listo <span class="text-gradient">para comenzar</span>?</h2>
+            <p class="text-lg text-silver mb-8 max-w-2xl mx-auto">🤩 Escribeme ahora y te ayudo a generar esos ingresos paso a paso, sere tu ayudante en ese proceso. 💪🏻💰</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button href="https://wa.me/5493873655135?text=👋🏻+¡Hola!+Quisiera+aprender+mas+sobre+los+negocios+digitales.%0A%0A¿Como+lo+hago%3F+Gracias+por+su+atención.+👍🏻." class="btn-gold px-10 py-4 text-lg">Contactar</button>
+                <button href="https://www.instagram.com/emprende_con_josue" class="btn-outline px-8 py-3 text-lg">Instagram</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="marketingModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/60fa6b6f-45b3-40be-9b68-4871989dcc67.png" alt="Estratega de marketing digital explicando conceptos en una pizarra interactiva" class="rounded-lg">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4">¿Como funciona esto?</h3>
+                    <p class="text-silver mb-6">Dandote un pequeño ejemplo, es hacerlo nosotros mismos, pero brindandonos una experiencia fluida con enseñanzas que sacaremos de la comunidad, te enseña a como emprender, como funciona, como se debe hacer, como vender los productos que puedes obviamente (revender)..</p>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-bold text-lg mb-2">¿Puedo revender los productos?</h4>
+                        <p class="text-silver">Si, puedes revender los productos una vez comprado uno de ellos, pero recuerda que si compras una membresía baja (por ejemplo el de 48.000), no podes revender las demas membresías como el diamante, arbitraje o vip combo, solo puedes revender la misma membresía que has comprado, pero si quieres vender las membresía mas altas, podes comprarlas para venderlas.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-bold text-lg mb-2">¿Que hago para venderlo?</h4>
+                        <p class="text-silver">Tendrias que tener los requisitos previos que te dare, en ese caso tambien en la plataforma pide por un mentor (en ese caso yo seria tu mento) pero al comprar una membresía ahora puedes ser un mentor, y para revenderle a la gente, podes ver en las clases en vivo donde hay grabaciones y estrategias o formas de hacerlo, mas o menos ahi podes tener toda la info que puedas saber para empezar a emprender.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-bold text-lg mb-2">Sinceridad:</h4>
+                        <p class="text-silver">No generaras ganancias al instante, entra a la comunidad, aprende a desarrollarte, dejanos enseñarte, mira los videos en vivo ya grabados para que puedas empezar, consulta tus dudas, atiende y verás que podras y tendras tu primera venta, es normal no generar ganancias al primer dia, creeme que algunos les fue una semana, dos o tres, algunos hasta meses, pero los que se aferran al tema, logran resultados en pocas semanas. ¡Sé uno de ellos, esfuérzate con nosotros!</p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4 mt-6">
+                        <button href="https://www.instagram.com/emprende_con_josue" class="btn-gold">Consultar</button>
+                        <button href="membresias.html" class="btn-outline">Membresías</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-10 px-4 md:px-10 lg:px-20 bg-black border-t border-white border-opacity-10">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold mb-4">
+                        <span class="bg-gradient-to-r from-silver to-gold bg-clip-text text-transparent">MX</span><span class="text-white">COMMUNITY</span>
+                    </div>
+                    <p class="text-silver max-w-md">Registrate en la plataforma de Mohammad y Asociados y sé uno de los miembros a prosperar, con inteligencia y buen enfoque.</p>
+                </div>
+                
+                <div class="flex gap-6">
+                    <a href="https://www.facebook.com/share/16jsLJzZvS/" class="text-silver hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/emprende_con_josue" class="text-silver hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/josue_digital_?t=vqVLavavKoVUh4DF6dho1A&s=09" class="text-silver hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="border-t border-white border-opacity-10 mt-10 pt-10 text-center text-silver text-sm">
+                <p>© 2025 MX COMMUNITY : ¡Todos podemos!.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const cards = document.querySelectorAll('.card');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            const cardWidth = cards[0].offsetWidth + 30; // card width + margin
+            let currentPosition = 0;
+            const maxPosition = -((cards.length - 3) * cardWidth);
+            
+            function updateButtons() {
+                prevBtn.style.display = currentPosition === 0 ? 'none' : 'block';
+                nextBtn.style.display = currentPosition <= maxPosition ? 'none' : 'block';
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentPosition < 0) {
+                    currentPosition += cardWidth;
+                    carousel.style.transform = `translateX(${currentPosition}px)`;
+                    updateButtons();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentPosition > maxPosition) {
+                    currentPosition -= cardWidth;
+                    carousel.style.transform = `translateX(${currentPosition}px)`;
+                    updateButtons();
+                }
+            });
+            
+            updateButtons();
+            
+            // Modal functionality
+            const modal = document.getElementById('marketingModal');
+            const btn = document.getElementById('openModal');
+            const span = document.querySelector('.close-modal');
+            
+            btn.onclick = function() {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            span.onclick = function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+            
+            // Animate elements on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.feature-box, .card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animation
+            document.querySelectorAll('.feature-box, .card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+            
+            // Rotating text animation for hero section
+            const words = document.querySelectorAll('.rotating-text span');
+            let currentWord = 0;
+            
+            function rotateWords() {
+                words.forEach(word => word.style.opacity = '0');
+                words[currentWord].style.opacity = '1';
+                currentWord = (currentWord + 1) % words.length;
+            }
+            
+            setInterval(rotateWords, 2000);
+        });
+    </script>
+</body>
+</html>
+
+
