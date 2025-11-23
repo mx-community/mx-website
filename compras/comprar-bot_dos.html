@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Producto</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #000011 0%, #000033 100%); /* Negro semi azulado */
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .portada {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://qu.ax/Jyvex.gif'); /* Foto de portada placeholder - soporta GIFs si cambias la URL */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .portada h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            color: #add8e6; /* Celeste */
+        }
+
+        .cuadro {
+            background: rgba(0, 123, 255, 0.1); /* Azul semi transparente */
+            border: 2px solid #007bff; /* Azul */
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px;
+            max-width: 600px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .cuadro h2 {
+            color: #add8e6; /* Celeste */
+            margin-bottom: 20px;
+        }
+
+        .cuadro p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-comprar {
+            background: linear-gradient(45deg, #007bff, #00bfff); /* Azul a celeste */
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-comprar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-volver {
+            background: #000000; /* Negro */
+            color: #add8e6; /* Celeste */
+            border: 2px solid #add8e6;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-volver:hover {
+            background: #add8e6;
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .usuario {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #ffffff; /* Borde blanco */
+            object-fit: cover; /* Para que la imagen se ajuste sin deformarse, soporta anchuras y alturas variadas */
+            margin-bottom: 10px;
+        }
+
+        .usuario .nickname {
+            font-weight: bold;
+            color: #add8e6; /* Celeste */
+            font-size: 1.2rem;
+        }
+
+        .usuario .nombre {
+            color: #ffffff;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="portada">
+        <h1>TORU BOT</h1>
+    </div>
+
+    <div class="cuadro">
+        <h2>T O R U</h2>
+        <h2>V2</h2>
+        <p><strong>Descripción:</strong> Bot completo, una version secundaria del con comandos nuevos y avanzados, personalización disponible y soporte especial 24/7, contiene mas de 400 comandos.</p>
+        <p><strong>Valor ARS:</strong> $20.000.00</p>
+        <p><strong>Valor USD:</strong> $20.00</p>
+        <p><strong>Dueño:</strong> @mx-community</p>
+        <p><strong>Lanzamiento:</strong> 28 de noviembre del 2025</p>
+        
+        <div class="botones">
+            <a href="https://wa.me/5493873655135" class="btn btn-comprar">Comprar</a>
+            <a href="bots/disponibles.html" class="btn btn-volver">Volver Atrás</a>
+        </div>
+    </div>
+
+    <div class="usuario">
+        <img src="https://qu.ax/LnklU.jpg" alt="Avatar del usuario" class="avatar">
+        <div class="nickname">@Alan.Js</div>
+        <div class="nombre">mx_community</div>
+    </div>
+</body>
+</html>
+
+
+          
