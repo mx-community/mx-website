@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página Moderna</title>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #001122; /* Negro azulado */
+color: #333;
+}
+.header {
+position: relative;
+height: 400px; /* Altura fija para la portada */
+background-image: url('https://via.placeholder.com/1200x400/0000ff/ffffff?text=Portada'); /* Imagen de fondo, puedes cambiarla usando catbox o otro medio */
+background-size: cover;
+background-position: center;
+display: flex;
+align-items: flex-end; /* Título abajo */
+justify-content: center;
+padding: 20px;
+}
+.header::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,17,34,0.7)); /* Overlay elegante */
+z-index: 1;
+}
+.header h1 {
+position: relative;
+z-index: 2;
+margin: 0;
+color: #00bfff; /* Azul celeste */
+font-size: 2em;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+background: rgba(0, 17, 34, 0.8); /* Fondo semi-transparente para elegancia */
+padding: 10px 20px;
+border-radius: 10px;
+text-align: center;
+}
+.menu {
+max-width: 1000px;
+margin: 40px auto;
+padding: 20px;
+background-color: #001122; /* Mezclado con negro azulado, o tambien puedes usar otro color */
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.menu-item {
+display: flex;
+align-items: center;
+margin-bottom: 20px;
+padding: 15px;
+border: 1px solid #00bfff; /* Borde celeste para definición */
+border-radius: 8px;
+background-color: #002244; /* Negro azulado mezclado, más claro para contraste */
+transition: transform 0.3s ease;
+border-bottom: 2px solid #00bfff;
+}
+.menu-item:last-child {
+border-bottom: none;
+}
+.menu-item:hover {
+transform: translateY(-5px);
+box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.menu-item .buttons {
+display: flex;
+flex-direction: column;
+margin-right: 15px;
+}
+.menu-item button {
+padding: 12px 24px;
+margin: 5px 0;
+border: none;
+border-radius: 25px;
+cursor: pointer;
+font-weight: bold;
+font-size: 14px;
+transition: all 0.3s ease;
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.menu-item .ver {
+background: linear-gradient(45deg, #32cd32, #228b22);
+color: white;
+}
+.menu-item .ver:hover {
+background: linear-gradient(45deg, #228b22, #32cd32);
+transform: scale(1.05);
+}
+.menu-item .probar {
+background: linear-gradient(45deg, #1e90ff, #0066cc);
+color: white;
+}
+.menu-item .probar:hover {
+background: linear-gradient(45deg, #0066cc, #1e90ff);
+transform: scale(1.05);
+}
+.menu-item .content {
+flex: 1;
+}
+.menu-item h2 {
+margin: 0 0 10px 0;
+color: #00bfff; /* Azul celeste para visibilidad */
+}
+.menu-item p {
+margin: 0;
+line-height: 1.6;
+color: #fff; /* Blanco para visibilidad en fondo oscuro xd */
+}
+.expand {
+color: #00bfff;
+cursor: pointer;
+font-weight: bold;
+transition: color 0.3s ease;
+}
+.expand:hover {
+color: #0099cc;
+}
+.full-description {
+display: none;
+color: #fff; /* Blanco para la descripción expandida xd */
+}
+.footer-line {
+width: 100%;
+height: 3px;
+background: linear-gradient(to right, #00bfff, #001122, #00bfff); /* Gradiente elegante celeste-negro-celeste :v */
+margin: 40px 0 20px 0;
+}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>TEXTO</h1> /* Texto grande */
+</div>
+
+<!-- Comando 1 -->
+<div class="menu">
+<div class="menu-item">
+<div class="buttons">
+<button class="ver" onclick="window.open('https://wa.me/5493873655135', '_blank')">Ver</button> 
+<button class="probar" onclick="window.open('https://wa.me/5493873655135', '_blank')">Probar</button> 
+</div>
+<div class="content">
+<h2>#info</h2> /* Nombre del comando */
+<p>Comando de información. <span class="expand" onclick="toggleDescription(this)">...ver más</span></p> 
+<p class="full-description">Ejemplo de la descripción de este comando.</p>
+</div>
+</div>
+
+<!-- Apartado 2 -->
+<div class="menu-item">
+<div class="buttons">
+<button class="ver" onclick="window.open('https://wa.me/5493873655135', '_blank')">Ver</button>
+<button class="probar" onclick="window.open('https://wa.me/5493873655135', '_blank')">Probar</button>
+</div>
+<div class="content">
+<h2>#status</h2>
+<p>Descripción breve aquí. <span class="expand" onclick="toggleDescription(this)">...más</span></p>
+<p class="full-description">Ejemplo de la descripción de este comando.</p>
+</div>
+</div>
+
+<!-- Apartado 3 -->
+<div class="menu-item">
+<div class="buttons">
+<button class="ver" onclick="window.open('https://wa.me/5493873655135', '_blank')">Ver</button>
+<button class="probar" onclick="window.open('https://wa.me/5493873655135', '_blank')">Probar</button>
+</div>
+<div class="content">
+<h2>#ping</h2>
+<p>Descripción breve del tercer elemento. <span class="expand" onclick="toggleDescription(this)">...más</span></p>
+<p class="full-description">Ejemplo de la descripción de este comando.</p>
+</div>
+</div>
+
+<!-- Comando 4 -->
+<div class="menu-item">
+<div class="buttons">
+<button class="ver" onclick="window.open('https://wa.me/5493873655135', '_blank')">Ver</button>
+<button class="probar" onclick="window.open('https://wa.me/5493873655135', '_blank')">Probar</button>
+</div>
+<div class="content">
+<h2>#canal</h2>
+<p>Descripción breve del cuarto elemento. <span class="expand" onclick="toggleDescription(this)">...más</span></p>
+<p class="full-description">Ejemplo de la descripción de este comando.</p>
+</div>
+</div>
+
+<!-- Agrega más elementos aquí si es necesario, es decir, copiar y pegar lo mismo -->
+</div>
+
+<div class="footer-line"></div> 
+
+<script>
+function toggleDescription(element) {
+const fullDesc = element.parentElement.nextElementSibling;
+if (fullDesc.style.display === 'none' || fullDesc.style.display === '') {
+fullDesc.style.display = 'block';
+element.textContent = '...menos';
+} else {
+fullDesc.style.display = 'none';
+element.textContent = '...más';
+}
+}
+</script>
+</body>
+  </html>
